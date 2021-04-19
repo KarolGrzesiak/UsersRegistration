@@ -14,3 +14,13 @@ docker-compose -f compose/docker-compose.yml up -d
 
 docker-compose -f compose/docker-compose.yml down
 
+
+
+
+**After running docker-compose command, there are few available links:**
+
+http://localhost:5000/swagger/index.html - API.
+
+http://localhost:5341/ - Seq, centralized logging.
+
+http://localhost:8081/ - MongoDb, dashboard for database.
