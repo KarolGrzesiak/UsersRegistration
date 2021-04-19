@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+
+  seq:
+    image: datalust/seq
+    container_name: seq
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:80
+        
+  user-registration-api:
+    build:
+      context: ../../
+      dockerfile: src/API/Dockerfile
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+      - mongo-express
+      - seq
