@@ -27,7 +27,7 @@ services:
         
   user-registration-api:
     build:
-      context: ../../
+      context: ../
       dockerfile: src/API/Dockerfile
     restart: unless-stopped
     environment:
